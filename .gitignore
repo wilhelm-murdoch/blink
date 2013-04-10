@@ -1,0 +1,6 @@
+build/
+dist/
+*.pyc
+sandbox.py
+*.egg
+*.egg-info
