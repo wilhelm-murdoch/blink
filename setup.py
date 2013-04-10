@@ -7,14 +7,13 @@ from version import __version__
 setup(
     name='blink',
     version=__version__,
-    description='',
+    description='Create jQuery-like events for your Python app.',
     author='Wilhelm Murdoch',
     author_email='wilhelm.murdoch@gmail.com',
     url='http://www.thedrunkenepic.com/',
-    packages=find_packages(exclude=['tests', 'tests.*']),
+    packages=find_packages(exclude=['tests']),
     setup_requires=[
         'nose==1.1.2',
-        'yanc==0.2.3',
-        'mock==1.0.1'
+        'yanc==0.2.3'
     ]
 )
