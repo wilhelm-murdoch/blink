@@ -91,5 +91,12 @@ Invokes all callbacks associated with the specified `event` name. You may pass
 arbitrary arguments through and they will be appear as `*args` and or `**kwargs` within each associated callback.
 
 ```python
+  from blink import blink
+
+  @blink.bind('blink:event')
+  def blinker_event(*args, **kwargs):
+    print args, kwargs
+
   blink.trigger('blink:event', 1, 2, 3, 4, foo=True, bar=False)
+  >>> (1, 2, 3, 4) {'foo': True, 'bar': False}
 ```
