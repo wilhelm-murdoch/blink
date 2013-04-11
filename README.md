@@ -18,11 +18,11 @@ Python 2.6+ and tested on Python 3+
 
 ## Installing From Github
 
-  $: pip install git+git://github.com/wilhelm-murdoch/blink.git
+    $: pip install git+git://github.com/wilhelm-murdoch/blink.git
 
 Or, add the following line to a `requirements.txt` file:
 
-  -e git+ssh://git@github.com/wilhelm-murdoch/blink.git#egg=blink
+    -e git+ssh://git@github.com/wilhelm-murdoch/blink.git#egg=blink
 
 ## Examples
 
