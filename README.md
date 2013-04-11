@@ -24,25 +24,72 @@ Or, add the following line to a `requirements.txt` file:
 
     -e git+ssh://git@github.com/wilhelm-murdoch/blink.git#egg=blink
 
-## Examples
+## Example
 
 ```python
-  from blink import Blink
+  from blink import blink
 
-  blinker = Blink()
+  @blink.bind('blink:event')
+  def blinker_event(message):
+    print message
 
-  @blinker.bind('test-event')
-  def toUpper(username='', *args, **kwargs):
-    print username.upper()
+  blink.trigger('blink:event', message='This is a message.')
+  >>> 'This is a message.'
+```
 
-  @blinker.bind('test-event')
-  def toLower(username='', *args, **kwargs):
-    print username.lower()
+Or, create your own `blink.Blink` instance to pass throughout your application:
 
-  def test():
-    blinker.trigger('test-event', username='mErPfLaKeS')
+```python
+  import blink
 
-  test()
-  >>> 'MERPFLAKES'
-  >>> 'merpflakes'
+  blinker = blink.Blink()
+```
+
+### Methods
+
+#### blink.bind
+
+Bind a callback to the specified event.
+
+```python
+  def callback(message):
+    print message
+
+  blink.bind('blink:event', callback)
+  blink.trigger('blink:event', message='This is a message.')
+  >>> 'This is a message.'
+```
+
+You can also use the `blink.bind()` method as a decorator:
+
+```python
+  @blink.bind('blink:event')
+  def callback(message):
+    print message
+
+  blink.trigger('blink:event', message='This is a message.')
+  >>> 'This is a message.'
+```
+
+#### blink.unbind
+
+Unbinds the specified `callback` from the specified `event`:
+
+```python
+  blink.unbind('blink:event', callback)
+```
+
+However, if you wish to unbind all callbacks from a specified `event`, just leave out the `callback` parameter:
+
+```python
+  blink.unbind('blink:event')
+```
+
+#### blink.trigger
+
+Invokes all callbacks associated with the specified `event` name. You may pass
+arbitrary arguments through and they will be appear as `*args` and or `**kwargs` within each associated callback.
+
+```python
+  blink.trigger('blink:event', 1, 2, 3, 4, foo=True, bar=False)
 ```
