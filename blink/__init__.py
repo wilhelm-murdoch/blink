@@ -37,6 +37,9 @@ class Blink(object):
             callback function, None
                 The callback to disassociate with the specified event.
         """
+        if event not in self._events:
+            raise BlinkException("Event {} has not been set.".format(event))
+
         if callback is None:
             del self._events[event]
         else:
@@ -52,7 +55,7 @@ class Blink(object):
                 The name of the event to invoke.
         """
         if event not in self._events:
-            raise BlinkException("Event %s has not been set.".format(event))
+            raise BlinkException("Event {} has not been set.".format(event))
 
         for callback in self._events[event]:
             callback(*args, **kwargs)
