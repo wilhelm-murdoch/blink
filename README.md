@@ -1,3 +1,4 @@
+[![Build Status](https://drone.io/github.com/wilhelm-murdoch/blink/status.png)](https://drone.io/github.com/wilhelm-murdoch/blink/latest)
 # Blink
 
 Blink allows you to easily bind jQuery-like events to your Python apps.
